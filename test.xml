@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<item>
+  <title>Version 23.1.1.228</title>
+  <pubDate>Wed, 11 Nov 2020 10:48:48 Z</pubDate>
+  <sparkle:releaseNotesLink>https://gms.magecorn.com/release-notes-runtime-NuBeta-I.html</sparkle:releaseNotesLink>
+  <comments>https://gms.magecorn.com/release-notes-23.1.1.228.json</comments>
+  <enclosure url="https://gms.magecorn.com/78950432-ac79-4817-90b7-41127fe39d10.zip" sparkle:version="23.1.1.228" type="application/octet-stream" length="34456310" sparkle:dsaSignature="MCwCFGLjihp92wAxeZ64nHiGWVChMcf/AhQddgRcCLUTAFq8k7YYr32x+jrSFA==">
+    <module name="android" url="https://gms.magecorn.com/1dba18d2-d304-4f2b-9f54-828e02bc30cb.zip" sparkle:version="23.1.1.228" length="87070671" sparkle:dsaSignature="MC4CFQCBSRQCmPlDYNpHyXU2ezuRnNUpWwIVAJIiDB1m3+zTcU7mt31z8eURdvzc"/>
+    <module name="html5" url="https://gms.magecorn.com/2e126ee0-2efc-4119-b8f8-db4dda89382c.zip" sparkle:version="23.1.1.228" length="483452" sparkle:dsaSignature="MCwCFE0Gu6N2/dHlHqwdpcn5wwuYVFT8AhQc8/6Vz7YdqoJ8wTO1bvB7sxmErQ=="/>
+    <module name="ios" url="https://gms.magecorn.com/cff0a568-5060-4ece-a850-7333b6785696.zip" sparkle:version="23.1.1.228" length="94718695" sparkle:dsaSignature="MC0CFQCNHiRjdqes11HFHbnc4Dot/Fr0OQIUPEcGbZ05miidQX368hvE9KnHT8Q="/>
+    <module name="linux" url="https://gms.magecorn.com/991bd1d0-03fe-4be4-a41d-2b42d73ebf32.zip" sparkle:version="23.1.1.228" length="4886965" sparkle:dsaSignature="MCwCFAQFPBpNlGsaufMPQ8tcpZ2dWFEZAhQ7HpeRpEE2b6/WYsVYsXSNT5QtSw=="/>
+    <module name="linuxYYC" url="https://gms.magecorn.com/2cd6e7b5-85a7-48dc-bd54-b194c67cba49.zip" sparkle:version="23.1.1.228" length="39910103" sparkle:dsaSignature="MC0CFCL8OoeGEUTh98uwuncLNYv6MP10AhUAmTfTJEIdI08kwYFmCCP1qOEXo7Q="/>
+    <module name="mac" url="https://gms.magecorn.com/0deb240e-0bd3-4e10-9053-859d36b027cf.zip" sparkle:version="23.1.1.228" length="43361329" sparkle:dsaSignature="MCwCFCQWXiXcp0EYkoV3De6faoFsqVT6AhRvCETaZWJdgv2CuE+oCRjtPkOCxw=="/>
+    <module name="macYYC" url="https://gms.magecorn.com/e2b26e22-146e-493b-a22b-0a223ca74a4d.zip" sparkle:version="23.1.1.228" length="51345887" sparkle:dsaSignature="MCwCFBjjIm+pQJmfTILv8ja4CBvhFH3mAhRUIBeLigStdPVOQX/qvXrnjh5fpQ=="/>
+    <module name="ps4" url="https://gms.magecorn.com/b88c7a50-bbcb-4196-bd08-9e88c0fc1bde.zip" sparkle:version="23.1.1.228" length="7585617" sparkle:dsaSignature="MC0CFQCHT0EuAuHyDLNinQgwJqreR6zoBAIUIImyGo10Vf1+QgJzXD1C0uYrrGU="/>
+    <module name="switch" url="https://gms.magecorn.com/65f57ea6-3c9d-4945-a559-a434fdbe6cf1.zip" sparkle:version="23.1.1.228" length="33641888" sparkle:dsaSignature="MCwCFHPIAmD/DiX0pKyq30hRMVzRW+S0AhRFO4xxfCS9SdtXCKezkIecy5m76w=="/>
+    <module name="tvos" url="https://gms.magecorn.com/dc0ad553-86e9-4d4a-9889-23c3f3f5877c.zip" sparkle:version="23.1.1.228" length="180350149" sparkle:dsaSignature="MCwCFCEECdDU7YbDumGuUAN4yFr7fLioAhQK1eXIVUC45tCRWeuRJsK/mJoVug=="/>
+    <module name="windows" url="https://gms.magecorn.com/be2b24a1-07d5-4819-ae9b-91794d46fab2.zip" sparkle:version="23.1.1.228" length="19935953" sparkle:dsaSignature="MC0CFQCMibkFQ/JVTSB8e1ikHrjymHPg/wIUBNkhGxRdQEviT6LTQXixq/1V8Ng="/>
+    <module name="windowsuap" url="https://gms.magecorn.com/e5984f3d-bafd-4ec2-8f3f-f9880c152766.zip" sparkle:version="23.1.1.228" length="36848742" sparkle:dsaSignature="MC0CFHjCntKtE+jS2FtUtWdg8Bl5bROEAhUAlFqLID+lKuVO/EnZuuvvRZUeIyA="/>
+    <module name="windowsYYC" url="https://gms.magecorn.com/a7f464cc-0727-4ccd-a525-ad5114870d08.zip" sparkle:version="23.1.1.228" length="85585404" sparkle:dsaSignature="MCwCFGUAlRZwjA8v6OqC8RYdBIGWCk+EAhRxkdH/sFEyrNBU12GNgFwAt2H7BA=="/>
+    <module name="xboxone" url="https://gms.magecorn.com/29446466-4106-4517-b54c-cdea5c53660f.zip" sparkle:version="23.1.1.228" length="22618595" sparkle:dsaSignature="MCwCFAWYk/WvoT7qUJbK916UnJZqOZw4AhRRVzZTCEMcERlNhLhz3brpB2JM4g=="/>
+    <module name="mac.mono" url="https://gms.magecorn.com/MonoFramework-MDK-6.10.0.104.macos10.xamarin.universal.pkg" sparkle:version="6.10.0.104" length="363441811" sparkle:dsaSignature="MCwCFANlghIqKBXVC9hYW4u1KRFiT/05AhRXRBiwLConkp/WtHX5M3Nn6Jv5kg=="/>
+  </enclosure>
+</item>

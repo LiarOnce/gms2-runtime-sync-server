@@ -1,0 +1,23 @@
+{
+  "name": "gms2-runtime-sync-server",
+  "version": "0.0.1",
+  "description": "Sync and mirror GameMaker Studio 2 runtimes",
+  "main": "index.js",
+  "author": "LiarOnce",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.2",
+    "require-dir": "^1.2.0",
+    "shelljs": "^0.8.4",
+    "xml2js": "^0.4.23"
+  },
+  "scripts": {
+    "start": "npm run generate:JSON && npm run generate:URL && npm run generate:TXT && npm run downloadZip",
+    "clean": "node cleanfile.js",
+    "generate:JSON": "node generateJSON.js",
+    "generate:URL": "node generateURL.js",
+    "generate:TXT": "node generateTXT.js",
+    "downloadZip": "node downloadZip.js",
+    "config": "node config.js"
+  }
+}
