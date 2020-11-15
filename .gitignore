@@ -4,9 +4,9 @@ results/*
 mirror/*
 
 !rss/.gitkeep
-!results/.gitkeep
-!results/runtime/.gitkeep
-!results/runtime/modules/.gitkeep
-!results/runtime/modules/edition/.gitkeep
-!results/runtime/modules/edition/download/.gitkeep
+#!results/.gitkeep
+#!results/runtime/.gitkeep
+#!results/runtime/modules/.gitkeep
+#!results/runtime/modules/edition/.gitkeep
+#!results/runtime/modules/edition/download/.gitkeep
 !mirror/.gitkeep
