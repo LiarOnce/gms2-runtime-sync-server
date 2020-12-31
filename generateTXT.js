@@ -22,6 +22,7 @@ shell.exec("awk 1 windowsuap.txt > edition/uwp.txt");
 shell.exec("awk 1 ps4.txt switch.txt xboxone.txt > edition/console.txt");
 
 //Get the latest version to TXT
-let jsonfile = JSON.parse(fs.readFileSync("android.json"));
-let version=jsonfile.$['sparkle:version'];
-fs.writeFileSync("./edition/version.txt", version);
+shell.cd("../../");
+let jsonfile = JSON.parse(fs.readFileSync("result3.json"));
+let version=jsonfile.enclosure.$['sparkle:version'];
+fs.writeFileSync("./runtime/modules/edition/version.txt", version);

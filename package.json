@@ -15,7 +15,6 @@
     "start": "npm run generate:JSON &&  npm run generate:TXT",
     "clean": "node cleanfile.js",
     "generate:JSON": "node generateJSON.js",
-    "generate:URL": "node generateURL.js",
     "generate:TXT": "node generateTXT.js",
     "downloadZip": "node downloadZip.js",
     "config": "node config.js"
