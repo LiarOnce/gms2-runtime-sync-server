@@ -2,5 +2,6 @@ node_modules
 rss/*
 results/*
 mirror/*
-
+package-lock.json
+generateJSON-old.js
 !.gitkeep
