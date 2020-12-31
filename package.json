@@ -12,7 +12,7 @@
     "xml2js": "^0.4.23"
   },
   "scripts": {
-    "start": "npm run generate:JSON && npm run generate:URL && npm run generate:TXT && npm run downloadZip",
+    "start": "npm run generate:JSON && npm run generate:URL && npm run generate:TXT",
     "clean": "node cleanfile.js",
     "generate:JSON": "node generateJSON.js",
     "generate:URL": "node generateURL.js",
