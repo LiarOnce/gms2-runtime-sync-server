@@ -52,77 +52,20 @@ function cutModule() {
                 console.log("Get comment successfully.");
             });
             let enclosure = modulesJSON.enclosure.$.url;
-            fs.writeFile("./results/runtime/enclosure.txt", enclosure, (err)=>{
+            fs.writeFile("./results/runtime/modules/enclosure.txt", enclosure, (err)=>{
                 console.log("Get enclosure successfully.");
             });
             //Get modules
             fs.mkdirSync("./results/runtime/modules");
-            
-            //For Desktop
-            let linux = modulesJSON.enclosure.module[3].$.url;
-            fs.writeFile("./results/runtime/modules/linux.txt", linux, (err)=>{
-                console.log("Get (Desktop) Linux modules successfully.");
-            });
-            let linuxYYC = modulesJSON.enclosure.module[4].$.url;
-            fs.writeFile("./results/runtime/modules/linuxYYC.txt", linuxYYC, (err)=>{
-                console.log("Get (Desktop) Linux (YoYo Compiler) modules successfully.");
-            });
-            let mac = modulesJSON.enclosure.module[5].$.url;
-            fs.writeFile("./results/runtime/modules/mac.txt", mac, (err)=>{
-                console.log("Get (Desktop) macOS modules successfully.");
-            });
-            let macYYC = modulesJSON.enclosure.module[6].$.url;
-            fs.writeFile("./results/runtime/modules/macYYC.txt", macYYC, (err)=>{
-                console.log("Get (Desktop) macOS (YoYo Compiler) modules successfully.");
-            });
-            let windows = modulesJSON.enclosure.module[10].$.url;
-            fs.writeFile("./results/runtime/modules/windows.txt", windows, (err)=>{
-                console.log("Get (Desktop) Windows modules successfully.");
-            });
-            let windowsYYC = modulesJSON.enclosure.module[12].$.url;
-            fs.writeFile("./results/runtime/modules/windowsYYC.txt", windowsYYC, (err)=>{
-                console.log("Get (Desktop) Windows (YoYo Compiler) modules successfully.");
-            });
 
-            //For Mobile
-            let android = modulesJSON.enclosure.module[0].$.url;
-            fs.writeFile("./results/runtime/modules/android.txt", android, (err)=>{
-                console.log("Get (Mobile) Android modules successfully.");
-            });
-            let ios = modulesJSON.enclosure.module[2].$.url;
-            fs.writeFile("./results/runtime/modules/ios.txt", ios, (err)=>{
-                console.log("Get (Mobile) iOS modules successfully.");
-            });
-            let tvos = modulesJSON.enclosure.module[9].$.url;
-            fs.writeFile("./results/runtime/modules/tvos.txt", tvos, (err)=>{
-                console.log("Get (Mobile) tvOS module successfully.")
-            });
-
-            //For Web
-            let html5 = modulesJSON.enclosure.module[1].$.url;
-            fs.writeFile("./results/runtime/modules/html5.txt", html5, (err)=>{
-                console.log("Get (Web) HTML5 modules successfully.");
-            });
-            
-            //For UWP
-            let windowsuap = modulesJSON.enclosure.module[11].$.url;
-            fs.writeFile("./results/runtime/modules/windowsuap.txt", windowsuap, (err)=>{
-                console.log("Get (UWP) Windows 10 UWP modules successfully.");
-            });
-
-            //For console
-            let ps4 = modulesJSON.enclosure.module[7].$.url;
-            fs.writeFile("./results/runtime/modules/ps4.txt", ps4, (err)=>{
-                console.log("Get (Console) PlayStation 4 modules successfully.");
-            });
-            let nswitch = modulesJSON.enclosure.module[8].$.url;
-            fs.writeFile("./results/runtime/modules/nswitch.txt", nswitch, (err)=>{
-                console.log("Get (Console) Nintendo Switch modules successfully.");
-            });
-            let xboxone = modulesJSON.enclosure.module[13].$.url;
-            fs.writeFile("./results/runtime/modules/xboxone.txt", xboxone, (err)=>{
-                console.log("Get (Console) Xbox One modules successfully.");
-            });
+            let moduleArray = modulesJSON.enclosure.module;
+            for(let s in moduleArray){
+                let name = moduleArray[s].$.name;
+                let url = moduleArray[s].$.url;
+                fs.writeFile("./results/runtime/modules/" + name + ".txt", url, (err)=>{
+                    console.log("Get " + name + " successfully.")
+                });
+            }
         } else {
             console.log(err);
         }
