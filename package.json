@@ -12,11 +12,12 @@
     "xml2js": "^0.4.23"
   },
   "scripts": {
-    "start": "npm run generate:JSON &&  npm run generate:TXT",
+    "start": "npm run generate:JSON &&  npm run generate:TXT && npm run downloadZip && npm run convert2XML",
     "clean": "node cleanfile.js",
     "generate:JSON": "node generateJSON.js",
     "generate:TXT": "node generateTXT.js",
     "downloadZip": "node downloadZip.js",
-    "config": "node config.js"
+    "config": "node config.js",
+    "convert2XML": "node convert2XML.js"
   }
 }
