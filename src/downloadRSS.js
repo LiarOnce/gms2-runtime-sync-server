@@ -9,4 +9,10 @@ function downloadRSS(url, filename, callback) {
     request(url).pipe(stream).on('close', callback);
 }
 
-module.exports = { downloadRSS }
+function downloadRSSFromMirror(url, filename, callback) {
+    //let stream = fs.createWriteStream(filename);
+    let stream = fs.createWriteStream(path.join(__dirname, '../mirror', filename));
+    request(url).pipe(stream).on('close', callback);
+}
+
+module.exports = { downloadRSS, downloadRSSFromMirror }

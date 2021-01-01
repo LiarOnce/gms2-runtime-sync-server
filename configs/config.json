@@ -1,3 +1,4 @@
 {
-    "channel": "Stable"
+    "channel": "Stable",
+    "mirrorURL": "https://gms.magecorn.com"
 }
