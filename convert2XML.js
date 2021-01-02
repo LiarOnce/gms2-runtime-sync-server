@@ -19,11 +19,11 @@ const parser = new xml2js.Parser({
 
 function download(){
     if (config.channel == "Stable") {
-        rssURL = "https://gms.magecorn.com/Zeus-Runtime.rss";
+        rssURL = config.mirrorURL + "/" + "Zeus-Runtime.rss";
         rssPath = "Zeus-Runtime.rss";
     } else {
         if (config.channel == "NuBeta") {
-            rssURL = "https://gms.magecorn.com/Zeus-Runtime-NuBeta.rss";
+            rssURL = config.mirrorURL + "/" + "Zeus-Runtime-NuBeta.rss";
             rssPath = "Zeus-Runtime-NuBeta.rss";
         } else {
             console.log("No file.")
