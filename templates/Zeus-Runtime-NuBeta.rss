@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>GameMaker:Studio Changelog</title>
+    <link>http://store.yoyogames.com/downloads/gm-studio/update-studio.rss</link>
+    <description>Most recent changes with links to updates.</description>
+    <language>en</language>
+    <!-- END yygames -->
+    <item>
+      <title>Version 23.1.1.248</title>
+      <pubDate>Mon, 14 Dec 2020 13:08:21 Z</pubDate>
+      <sparkle:releaseNotesLink>https://gm2016.yoyogames.com/release-notes-runtime-NuBeta-I.html</sparkle:releaseNotesLink>
+      <comments>https://gm2016.yoyogames.com/release-notes-23.1.1.248.json</comments>
+      <enclosure url="https://gm2016.yoyogames.com/661dfc98-03f4-4212-88d1-ef879cd57ce2.zip" sparkle:version="23.1.1.248" type="application/octet-stream" length="34458705" sparkle:dsaSignature="MCwCFAo779IJZ88arkkLh1C3ds4WDdo6AhQ0DuRJo0yZzWNh05LQSRBkCTYoYQ==">
+        <module name="android" url="https://gm2016.yoyogames.com/da79cc91-fa9f-477a-b595-270ce0eaec83.zip" sparkle:version="23.1.1.248" length="87083378" sparkle:dsaSignature="MCwCFH3jYjlCBNuBXKhqlNbybiLBPo+SAhRvSw2SyopzzwhLQaRlOcDjgX0F5A==" />
+        <module name="html5" url="https://gm2016.yoyogames.com/39ae4925-cabd-47f4-a878-649abddc87ad.zip" sparkle:version="23.1.1.248" length="483657" sparkle:dsaSignature="MCwCFDNxd2Ff4hStuLnqaa1VkUBygLbBAhQpmo4Pf3c+kQxDqltCApV9kA+2iw==" />
+        <module name="ios" url="https://gm2016.yoyogames.com/ec22ca87-613a-440f-9e78-55884269964c.zip" sparkle:version="23.1.1.248" length="94744317" sparkle:dsaSignature="MCwCFDPFl4kIhVZOwd1/uczF+ze/OxzgAhQJ39DVZQsk90X2/SO0/TAvpQl2qw==" />
+        <module name="linux" url="https://gm2016.yoyogames.com/fd18f3e7-1bfd-4b92-af4e-3445a933dc84.zip" sparkle:version="23.1.1.248" length="4886314" sparkle:dsaSignature="MCwCFGwhzPWXzu9N5KjQ2lx3wFQKehaEAhRcFESit0t+KpBFvgtpRSdzM66XBg==" />
+        <module name="linuxYYC" url="https://gm2016.yoyogames.com/f2c46ba0-3b2e-42d3-bf92-478bcffdf5db.zip" sparkle:version="23.1.1.248" length="39916583" sparkle:dsaSignature="MC4CFQCbjQHuIBO7KU3M5SOWB7Y2RBB/kgIVAJSX2G2Lu0e75jeweyHcazsBxPQM" />
+        <module name="mac" url="https://gm2016.yoyogames.com/97f14d6b-6809-49e8-9f6a-42e8448fd877.zip" sparkle:version="23.1.1.248" length="43385653" sparkle:dsaSignature="MCwCFEJ0pHuTgebg76RUhLTSJTGEVvNWAhQTlyFxlmaPQfsX16kFyhEpljcYqQ==" />
+        <module name="macYYC" url="https://gm2016.yoyogames.com/47c24c85-281b-40d7-b510-fa713ee5b1d4.zip" sparkle:version="23.1.1.248" length="51361693" sparkle:dsaSignature="MCwCFEf4zYu97DgLXU+K7WwDaB+RpxHcAhRaD6qkdGdFgXfh3oD1PmsswOag1Q==" />
+        <module name="ps4" url="https://gm2016.yoyogames.com/dd388b08-a537-43b6-bde0-49ca982beaab.zip" sparkle:version="23.1.1.248" length="7587314" sparkle:dsaSignature="MCwCFBgH5xT8hplMcL1C2y7XkC9PNgXdAhRR+erXHyES0LVwrVpAoX5BtjQ4Yg==" />
+        <module name="switch" url="https://gm2016.yoyogames.com/8550c81e-0e1a-4772-8dee-417f0da46411.zip" sparkle:version="23.1.1.248" length="33642421" sparkle:dsaSignature="MC0CFQCJk/H7B8qXzOmysZaPLaWrZYQPCAIUWSbXHSYcsZj3lKCKe3Tf1JNx3Dc=" />
+        <module name="tvos" url="https://gm2016.yoyogames.com/adfdeee4-e9f1-4355-99fc-2065ca1d06b7.zip" sparkle:version="23.1.1.248" length="180413218" sparkle:dsaSignature="MCwCFA/4h+g3iX8O0vSqhY6LaDdUUUiWAhQCWOylZ5npRCGP+TM/TbshaSwtjA==" />
+        <module name="windows" url="https://gm2016.yoyogames.com/04803baa-374e-42c0-a3d8-82f142215360.zip" sparkle:version="23.1.1.248" length="19937638" sparkle:dsaSignature="MCwCFGzl2t14nt4QdwtPB8vD/yDLKgIbAhQzkqYV/5Os/2lUe1oQs/HlVsBjgw==" />
+        <module name="windowsuap" url="https://gm2016.yoyogames.com/098f7e54-603e-4f3c-95de-919b9b5f8e81.zip" sparkle:version="23.1.1.248" length="36853538" sparkle:dsaSignature="MCwCFCJtEfSWu/WsjrC8d9BryVcXiGoSAhRY8vBJ3Of25tpvdoI2AXbp1BbGvA==" />
+        <module name="windowsYYC" url="https://gm2016.yoyogames.com/4ea833ec-6403-4642-adb2-783739a74bd8.zip" sparkle:version="23.1.1.248" length="85598227" sparkle:dsaSignature="MCwCFHkBiWAJAiCSiLySJdz5mxdDwiRQAhQLWlhbInz+yF/bQmGL4G1wN98tIw==" />
+        <module name="xboxone" url="https://gm2016.yoyogames.com/64ec8558-bf43-41a1-9551-2ff17b14cc14.zip" sparkle:version="23.1.1.248" length="22622164" sparkle:dsaSignature="MCwCFHqRJPMLttKy/cGrOKkW64H1ZmD9AhR3kYWhRVzc/uLwefylyvPcCH5Z/w==" />
+        <module name="mac.mono" url="https://gm2016.yoyogames.com/MonoFramework-MDK-6.10.0.104.macos10.xamarin.universal.pkg" sparkle:version="6.10.0.104" length="363441811" sparkle:dsaSignature="MCwCFD6hkWqkNxpjM6kJDZGA32+iEz5BAhQogTA5rkKKxRhPUn/wpcchz3tiFQ==" />
+      </enclosure>
+    </item>
+  </channel>
+</rss>
