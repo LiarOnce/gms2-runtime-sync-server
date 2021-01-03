@@ -38,6 +38,6 @@ npm run convert2XML
 
 ## TODO List
 
- - [ x ] 下载  
- - [ x ] 生成链接
- - [   ] 保留记录
+ - [x] 下载  
+ - [x] 生成链接
+ - [ ] 保留记录
