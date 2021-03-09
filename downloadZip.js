@@ -15,7 +15,7 @@ fs.mkdir("download", (err) => {
         console.log("Success.")
     }
 });
-fs.copyFileSync(__dirname+'/aria2c.conf', './download/aria2c.conf');
+fs.copyFileSync(__dirname+'/configs/aria2c.conf', './download/aria2c.conf');
 
 shell.cd("download");
 shell.exec("aria2c -i ../console.txt --conf-path=aria2c.conf");
