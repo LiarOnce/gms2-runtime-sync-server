@@ -72,11 +72,11 @@ function generateXML () {
     });
 };
 
-let result3 = JSON.parse(fs.readFileSync("./results/result3.json"));
-let result3String = fs.readFileSync("./results/result3.json").toString();
+let latestversion = JSON.parse(fs.readFileSync("./results/latestversion.json"));
+let latestversionString = fs.readFileSync("./results/latestversion.json").toString();
 let runtimeOriginalURL = "https://gm2016.yoyogames.com";
-let runtimeMirrorURL = config.mirrorURL + "/" + result3.enclosure.$['sparkle:version'];
-let final = result3String.split(runtimeOriginalURL).join(runtimeMirrorURL);
+let runtimeMirrorURL = config.mirrorURL + "/" + latestversion.enclosure.$['sparkle:version'];
+let final = latestversionString.split(runtimeOriginalURL).join(runtimeMirrorURL);
 fs.writeFile("./mirror/latest.json", final, (err) => {
     console.log("Change Mirror successfully.");
     download();
