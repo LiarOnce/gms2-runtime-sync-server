@@ -14,6 +14,10 @@
 }
 ```
 
+依赖：
+    1. aria2c (Windows, macOS, Linux)
+    2. Gnuwin32 (只有 Windows), 或者使用 MinGW-w64，需已经设置好环境变量
+
 命令：
 
 ```bash
