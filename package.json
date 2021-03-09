@@ -1,6 +1,6 @@
 {
   "name": "gms2-runtime-sync-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sync and mirror GameMaker Studio 2 runtimes",
   "main": "index.js",
   "author": "LiarOnce",
@@ -12,9 +12,9 @@
     "xml2js": "^0.4.23"
   },
   "scripts": {
-    "start:all": "node generateJSON.js &&  node generateTXT.js && node downloadZip.js && npm run convert2XML",
-    "start:onlydownload": "node generateJSON.js &&  node generateTXT.js && node downloadZip.js",
-    "start:onlygenerate": "node generateJSON.js &&  node generateTXT.js",
+    "start:all": "node generateJSON.js && node downloadZip.js && npm run convert2XML",
+    "start:onlydownload": "node generateJSON.js &&  node downloadZip.js",
+    "start:onlygenerate": "node generateJSON.js",
     "clean": "node cleanfile.js",
     "config": "node config.js",
     "convert2XML": "node convert2XML.js"

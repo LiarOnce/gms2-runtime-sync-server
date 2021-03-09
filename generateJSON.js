@@ -6,7 +6,6 @@ let RSS = require("./configs/RSS.json");
 // Init dependencies
 const fs = require("fs");
 const xml2js = require("xml2js");
-const shell = require("shelljs");
 
 const downloadRSS = require("./src/downloadRSS");
 
@@ -27,26 +26,18 @@ function parseRSS() {
         let jsonresult = JSON.stringify(result, null, "\t");
         fs.writeFile("./results/result.json", jsonresult, (err) => {
             console.log("Convert XML to JSON successfully.")
-            minimalRSS();
+            GetLatestVersionFromRSS();
         });
     });
 }
 
-function cutTheNewestVersion() {
-    shell.cd("results");
-    shell.exec("sed -i '1d' result2.json");
-    shell.exec("sed -i '$d' result2.json");
-    shell.exec("cat result2.json | tail -n 152 > result3.json");
-    shell.cd("..");
-}
-
-function cutModule() {
-    fs.access("./results/result3.json", fs.constants.F_OK, function (err) {
+function ExportModule() {
+    fs.access("./results/latestversion.json", fs.constants.F_OK, function (err) {
         if (!err) {
-            let result3JSON = fs.readFileSync("./results/result3.json");
+            let LatestVersion = fs.readFileSync("./results/latestversion.json");
             fs.mkdirSync("./results/runtime");
-            //Get comment and enclosure
-            let modulesJSON = JSON.parse(result3JSON);
+            //Get comment and enclosure/
+            let modulesJSON = JSON.parse(LatestVersion);
             let comment = modulesJSON.comments;
             fs.writeFile("./results/runtime/comment.txt", comment, (err)=>{
                 console.log("Get comment successfully.");
@@ -54,6 +45,10 @@ function cutModule() {
             let enclosure = modulesJSON.enclosure.$.url;
             fs.writeFile("./results/runtime/modules/enclosure.txt", enclosure, (err)=>{
                 console.log("Get enclosure successfully.");
+            });
+            let version = modulesJSON.enclosure.$["sparkle:version"];
+            fs.writeFile("./results/runtime/version.txt", version, (err)=>{
+                console.log("Get version successfully.")
             });
             //Get modules
             fs.mkdirSync("./results/runtime/modules");
@@ -72,17 +67,15 @@ function cutModule() {
     });
 }
 
-function minimalRSS() {
+function GetLatestVersionFromRSS() {
     fs.access("./results/result.json", fs.constants.F_OK, function (err) {
         if (!err) {
             let resultJSON = fs.readFileSync("./results/result.json");
             let rssJSON = JSON.parse(resultJSON);
-            let exportMinimal = JSON.stringify(rssJSON.rss.channel.item, null, "\t");
-            fs.writeFile("./results/result2.json", exportMinimal, (err) => {
-                console.log("Minimal JSON successfully.");
-                cutTheNewestVersion();
-                console.log("Cut the latest version from JSON successfully.");
-                cutModule();
+            let exportMinimal = JSON.stringify(rssJSON.rss.channel.item[rssJSON.rss.channel.item.length - 1], null, "\t");
+            fs.writeFile("./results/latestversion.json", exportMinimal, (err) => {
+                console.log("Export the latest version from JSON successfully.");
+                ExportModule();
             });
         } else {
             console.log(err);
