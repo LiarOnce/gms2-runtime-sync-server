@@ -6,6 +6,7 @@ let RSS = require("./configs/RSS.json");
 // Init dependencies
 const fs = require("fs");
 const xml2js = require("xml2js");
+const shell = require("shelljs");
 
 const downloadRSS = require("./src/downloadRSS");
 
@@ -61,6 +62,15 @@ function ExportModule() {
                     console.log("Get " + name + " successfully.")
                 });
             }
+
+            //Sort editions
+            fs.mkdirSync("./results/runtime/modules/edition");
+            shell.exec("awk 1 enclosure.txt windows.txt > edition/main.txt");
+            shell.exec("awk 1 linux.txt linuxYYC.txt mac.txt macYYC.txt windowsYYC.txt > edition/desktop.txt");
+            shell.exec("awk 1 html5.txt > edition/web.txt");
+            shell.exec("awk 1 android.txt ios.txt tvos.txt > edition/mobile.txt");
+            shell.exec("awk 1 windowsuap.txt > edition/uwp.txt");
+            shell.exec("awk 1 ps4.txt switch.txt xboxone.txt > edition/console.txt"); 
         } else {
             console.log(err);
         }
