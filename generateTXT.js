@@ -14,6 +14,7 @@ fs.mkdir("edition", (err) => {
         console.log("Success.")
     }
 });
+shell.exec("cp ../comment.txt edition/comment.txt");
 shell.exec("awk 1 enclosure.txt windows.txt > edition/main.txt");
 shell.exec("awk 1 linux.txt linuxYYC.txt mac.txt macYYC.txt windowsYYC.txt > edition/desktop.txt");
 shell.exec("awk 1 html5.txt > edition/web.txt");
