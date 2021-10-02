@@ -5,6 +5,12 @@ const xml2js = require("xml2js");
 const downloadRSS = require("./src/downloadRSS");
 let config = require("./configs/config.json");
 const shell = require("shelljs");
+const path = require("path");
+
+let latestversion = JSON.parse(fs.readFileSync("./results/latestversion.json"));
+let latestversionString = fs.readFileSync("./results/latestversion.json").toString();
+let runtimeOriginalURL = "https://gm2016.yoyogames.com";
+let runtimeMirrorURL = config.mirrorURL + "/" + latestversion.enclosure.$['sparkle:version'];
 
 let rssURL, rssPath;
 
@@ -68,14 +74,28 @@ function generateXML () {
             shell.cd("mirror");
             shell.exec("sed -i '2d' latest.xml");
             shell.exec("sed -i '$d' latest.xml");
+            CopyAndGenerateTXT();
         });
     });
 };
 
-let latestversion = JSON.parse(fs.readFileSync("./results/latestversion.json"));
-let latestversionString = fs.readFileSync("./results/latestversion.json").toString();
-let runtimeOriginalURL = "https://gm2016.yoyogames.com";
-let runtimeMirrorURL = config.mirrorURL + "/" + latestversion.enclosure.$['sparkle:version'];
+function CopyAndGenerateTXT() {
+    let modulesTXTArray = ["comment", "main", "desktop", "web", "mobile", "uwp", "console"];
+    for (let i = 0; i < modulesTXTArray.length; i++) {
+        let srcTXT = __dirname + "/results/runtime/modules/edition/" + modulesTXTArray[i] + ".txt";
+        let destTXT = __dirname + "/mirror/edition/" + modulesTXTArray[i] + ".txt";
+        fs.writeFileSync(destTXT, fs.readFileSync(srcTXT));
+        
+        let mirrorTXT = fs.readFileSync(destTXT).toString();
+        console.log(mirrorTXT);
+        let Reg = new RegExp(runtimeOriginalURL, "g")
+        let final = mirrorTXT.replace(Reg, runtimeMirrorURL);
+        fs.writeFile(destTXT, final, (err) => {
+            console.log("Write mirror URL successfully.");
+        });
+    };
+};
+
 let final = latestversionString.split(runtimeOriginalURL).join(runtimeMirrorURL);
 fs.writeFile("./mirror/latest.json", final, (err) => {
     console.log("Change Mirror successfully.");
