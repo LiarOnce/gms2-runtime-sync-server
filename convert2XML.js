@@ -7,8 +7,9 @@ let config = require("./configs/config.json");
 const shell = require("shelljs");
 const path = require("path");
 
-let latestversion = JSON.parse(fs.readFileSync("./results/latestversion.json"));
-let latestversionString = fs.readFileSync("./results/latestversion.json").toString();
+let GetLatestVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.channel.item;
+let latestversion = GetLatestVersion[GetLatestVersion.length - 1];
+let latestversionString = JSON.stringify(latestversion);
 let runtimeOriginalURL = "https://gm2016.yoyogames.com";
 let runtimeMirrorURL = config.mirrorURL + "/" + latestversion.enclosure.$['sparkle:version'];
 
@@ -74,6 +75,8 @@ function generateXML () {
             shell.cd("mirror");
             shell.exec("sed -i '2d' latest.xml");
             shell.exec("sed -i '$d' latest.xml");
+            fs.unlinkSync("Zeus-Runtime.rss");
+            fs.renameSync("latest.xml", "Zeus-Runtime.rss");
             CopyAndGenerateTXT();
         });
     });
@@ -81,10 +84,11 @@ function generateXML () {
 
 function CopyAndGenerateTXT() {
     let modulesTXTArray = ["comment", "main", "desktop", "web", "mobile", "uwp", "console"];
+    fs.mkdirSync( __dirname + "/mirror/edition");
     for (let i = 0; i < modulesTXTArray.length; i++) {
         let srcTXT = __dirname + "/results/runtime/modules/edition/" + modulesTXTArray[i] + ".txt";
         let destTXT = __dirname + "/mirror/edition/" + modulesTXTArray[i] + ".txt";
-        fs.writeFileSync(destTXT, fs.readFileSync(srcTXT));
+        fs.copyFileSync(srcTXT, destTXT);
         
         let mirrorTXT = fs.readFileSync(destTXT).toString();
         console.log(mirrorTXT);

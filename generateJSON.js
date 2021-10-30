@@ -38,7 +38,7 @@ function ExportModule() {
             let GetItemVersion = JSON.parse(fs.readFileSync("./results/result.json"));
             fs.mkdirSync("./results/runtime");
             //Get comment and enclosure/
-            let modulesJSON = GetItemVersion.rss.channel.item[GetItemVersion.rss.channel.item.length - 1];
+            let modulesJSON = GetItemVersion.[GetItemVersion.rss.channel.item.length - 1];
             let comment = modulesJSON.comments;
             fs.writeFile("./results/runtime/comment.txt", comment, (err)=>{
                 console.log("Get comment successfully.");
