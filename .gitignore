@@ -6,3 +6,4 @@ package-lock.json
 generateJSON-old.js
 !.gitkeep
 download/*
+edition/*

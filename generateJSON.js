@@ -27,18 +27,18 @@ function parseRSS() {
         let jsonresult = JSON.stringify(result, null, "\t");
         fs.writeFile("./results/result.json", jsonresult, (err) => {
             console.log("Convert XML to JSON successfully.")
-            GetLatestVersionFromRSS();
+            ExportModule();
         });
     });
 }
 
 function ExportModule() {
-    fs.access("./results/latestversion.json", fs.constants.F_OK, function (err) {
+    fs.access("./results/result.json", fs.constants.F_OK, function (err) {
         if (!err) {
-            let LatestVersion = fs.readFileSync("./results/latestversion.json");
+            let GetItemVersion = JSON.parse(fs.readFileSync("./results/result.json"));
             fs.mkdirSync("./results/runtime");
             //Get comment and enclosure/
-            let modulesJSON = JSON.parse(LatestVersion);
+            let modulesJSON = GetItemVersion.rss.channel.item[GetItemVersion.rss.channel.item.length - 1];
             let comment = modulesJSON.comments;
             fs.writeFile("./results/runtime/comment.txt", comment, (err)=>{
                 console.log("Get comment successfully.");
@@ -62,48 +62,21 @@ function ExportModule() {
                     console.log("Get " + name + " successfully.")
                 });
             }
-
-            //Sort editions
-            fs.mkdirSync("./results/runtime/modules/edition");
-            shell.exec("awk 1 enclosure.txt windows.txt operagx.txt > edition/main.txt");
-            shell.exec("awk 1 linux.txt linuxYYC.txt mac.txt macYYC.txt windowsYYC.txt > edition/desktop.txt");
-            shell.exec("awk 1 html5.txt > edition/web.txt");
-            shell.exec("awk 1 android.txt ios.txt tvos.txt > edition/mobile.txt");
-            shell.exec("awk 1 windowsuap.txt > edition/uwp.txt");
-            shell.exec("awk 1 ps4.txt ps5.txt switch.txt xboxone.txt xboxseriesxs.txt > edition/console.txt"); 
         } else {
             console.log(err);
         }
     });
 }
-
-function GetLatestVersionFromRSS() {
-    fs.access("./results/result.json", fs.constants.F_OK, function (err) {
-        if (!err) {
-            let resultJSON = fs.readFileSync("./results/result.json");
-            let rssJSON = JSON.parse(resultJSON);
-            let exportMinimal = JSON.stringify(rssJSON.rss.channel.item[rssJSON.rss.channel.item.length - 1], null, "\t");
-            fs.writeFile("./results/latestversion.json", exportMinimal, (err) => {
-                console.log("Export the latest version from JSON successfully.");
-                ExportModule();
-            });
-        } else {
-            console.log(err);
-        }
-    });
-}
-
-
 
 // Check RSS file exists, if file does not exists, download and convert to json
 fs.access("./rss/" + RSS.RSSFile, fs.constants.F_OK, function (err) {
     if (err) {
         if (err.code === "ENOENT") {
-            if (config.channel == "Stable") {
+            if (config.channel === "Stable") {
                 rssURL = "https://gms.yoyogames.com/Zeus-Runtime.rss";
                 rssPath = "Zeus-Runtime.rss";
             } else {
-                if (config.channel == "NuBeta") {
+                if (config.channel === "NuBeta") {
                     rssURL = "https://gms.yoyogames.com/Zeus-Runtime-NuBeta.rss";
                     rssPath = "Zeus-Runtime-NuBeta.rss";
                 } else {
