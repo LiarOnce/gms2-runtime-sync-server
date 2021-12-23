@@ -57,6 +57,7 @@ function initMirror(){
     let latest = JSON.parse(fs.readFileSync("./mirror/latest.json"));
     let original = JSON.parse(fs.readFileSync("./mirror/original.json"));
     delete original.rss.channel.item[0];
+    original.rss.channel.item = original.rss.channel.item.filter(n => n);
     original.rss.channel.item.push(latest);
     let delete_original = JSON.stringify(original, null, "\t");
     fs.writeFile("./mirror/deleted.json", delete_original, (err)=>{
