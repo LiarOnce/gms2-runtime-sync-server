@@ -35,16 +35,16 @@ function parseRSS() {
 function ExportModule() {
     fs.access("./results/result.json", fs.constants.F_OK, function (err) {
         if (!err) {
-            let GetItemVersion = JSON.parse(fs.readFileSync("./results/result.json"));
+            let GetItemVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.channel.item;
             fs.mkdirSync("./results/runtime");
             //Get comment and enclosure/
-            let modulesJSON = GetItemVersion.[GetItemVersion.rss.channel.item.length - 1];
+            let modulesJSON = GetItemVersion[GetItemVersion.length - 1];
             let comment = modulesJSON.comments;
             fs.writeFile("./results/runtime/comment.txt", comment, (err)=>{
                 console.log("Get comment successfully.");
             });
             let enclosure = modulesJSON.enclosure.$.url;
-            fs.writeFile("./results/runtime/modules/enclosure.txt", enclosure, (err)=>{
+            fs.writeFile("./results/runtime/enclosure.txt", enclosure, (err)=>{
                 console.log("Get enclosure successfully.");
             });
             let version = modulesJSON.enclosure.$["sparkle:version"];
