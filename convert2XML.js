@@ -10,8 +10,9 @@ const path = require("path");
 let GetLatestVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.channel.item;
 let latestversion = GetLatestVersion[GetLatestVersion.length - 1];
 let latestversionString = JSON.stringify(latestversion);
-let runtimeOriginalURL = "https://gm2016.yoyogames.com";
+let runtimeOriginalURL = "http\:\/\/gms.yoyogames.com|https\:\/\/gms.yoyogames.com|http\:\/\/gm2016.yoyogames.com|http\:\/\/gm2016.yoyogames.com";
 let runtimeMirrorURL = config.mirrorURL + "/" + latestversion.enclosure.$['sparkle:version'];
+let Reg = new RegExp(runtimeOriginalURL, "g");
 
 let rssURL, rssPath;
 
@@ -90,10 +91,9 @@ function CopyAndGenerateTXT() {
         let srcTXT = __dirname + "/results/runtime/modules/edition/" + modulesTXTArray[i] + ".txt";
         let destTXT = __dirname + "/mirror/edition/" + modulesTXTArray[i] + ".txt";
         fs.copyFileSync(srcTXT, destTXT);
-        
+        fs.copyFileSync(__dirname + "/results/runtime/version.txt", __dirname + "/mirror/edition/version.txt"); //Copy version text file
         let mirrorTXT = fs.readFileSync(destTXT).toString();
         console.log(mirrorTXT);
-        let Reg = new RegExp(runtimeOriginalURL, "g")
         let final = mirrorTXT.replace(Reg, runtimeMirrorURL);
         fs.writeFile(destTXT, final, (err) => {
             console.log("Write mirror URL successfully.");
@@ -101,7 +101,7 @@ function CopyAndGenerateTXT() {
     };
 };
 
-let final = latestversionString.split(runtimeOriginalURL).join(runtimeMirrorURL);
+let final = latestversionString.replace(Reg, runtimeMirrorURL);
 fs.writeFile("./mirror/latest.json", final, (err) => {
     console.log("Change Mirror successfully.");
     download();
