@@ -91,7 +91,6 @@ function CopyAndGenerateTXT() {
         let srcTXT = __dirname + "/results/runtime/modules/edition/" + modulesTXTArray[i] + ".txt";
         let destTXT = __dirname + "/mirror/edition/" + modulesTXTArray[i] + ".txt";
         fs.copyFileSync(srcTXT, destTXT);
-        fs.copyFileSync(__dirname + "/results/runtime/version.txt", __dirname + "/mirror/edition/version.txt"); //Copy version text file
         let mirrorTXT = fs.readFileSync(destTXT).toString();
         console.log(mirrorTXT);
         let final = mirrorTXT.replace(Reg, runtimeMirrorURL);
@@ -99,6 +98,7 @@ function CopyAndGenerateTXT() {
             console.log("Write mirror URL successfully.");
         });
     };
+    fs.copyFileSync(__dirname + "/results/runtime/version.txt", __dirname + "/mirror/edition/version.txt");
 };
 
 let final = latestversionString.replace(Reg, runtimeMirrorURL);

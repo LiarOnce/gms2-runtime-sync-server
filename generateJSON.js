@@ -49,7 +49,8 @@ function ExportModule() {
             });
             let version = modulesJSON.enclosure.$["sparkle:version"];
             fs.writeFile("./results/runtime/version.txt", version, (err)=>{
-                console.log("Get version successfully.")
+                console.log("Get version successfully.");
+                checkRemoteVersion();
             });
             //Get modules
             fs.mkdirSync("./results/runtime/modules");
@@ -66,6 +67,22 @@ function ExportModule() {
             console.log(err);
         }
     });
+}
+
+function checkRemoteVersion() {
+    let yoyoRemoteVersion = fs.readFileSync("./results/runtime/version.txt");
+    let mirrorURL = config.mirrorURL + "/docs/version/version.txt";
+    let mirrorVersion;
+    downloadRSS.downloadRSSFromMirror(mirrorURL, "version-mirror.txt", function(){
+        console.log("Download version from Mirror.");
+        mirrorVersion = fs.readFileSync("./mirror/version-mirror.txt")
+        if (yoyoRemoteVersion = mirrorVersion) {
+            console.error("Runtime version is up-to-date, exiting......");
+            process.exit(1); //If versions are same, exit.
+        } else {
+            return;
+        }
+    }); 
 }
 
 // Check RSS file exists, if file does not exists, download and convert to json

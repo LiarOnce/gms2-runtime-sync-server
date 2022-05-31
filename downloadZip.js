@@ -2,8 +2,10 @@
 const fs = require("fs");
 const shell = require("shelljs");
 
+let version = fs.readFileSync("results/runtime/version.txt", 'utf-8');
+
 shell.cd("results/runtime/modules/edition");
-fs.mkdir("download", (err) => {
+fs.mkdir(version, (err) => {
     if (err) {
         if (err.code == "EEXIST") {
             return;
@@ -15,9 +17,9 @@ fs.mkdir("download", (err) => {
         console.log("Success.")
     }
 });
-fs.copyFileSync(__dirname+'/configs/aria2c.conf', './download/aria2c.conf');
+fs.copyFileSync(__dirname+'/configs/aria2c.conf', './' + version + '/aria2c.conf');
 
-shell.cd("download");
+shell.cd(version);
 shell.exec("aria2c -i ../console.txt --conf-path=aria2c.conf");
 shell.exec("aria2c -i ../desktop.txt --conf-path=aria2c.conf");
 shell.exec("aria2c -i ../main.txt --conf-path=aria2c.conf");

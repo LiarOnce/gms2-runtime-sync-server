@@ -9,6 +9,7 @@
     "request": "^2.88.2",
     "require-dir": "^1.2.0",
     "shelljs": "^0.8.4",
+    "upyun": "^3.4.4",
     "xml2js": "^0.4.23"
   },
   "scripts": {
