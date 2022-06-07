@@ -76,7 +76,7 @@ function checkRemoteVersion() {
     downloadRSS.downloadRSSFromMirror(mirrorURL, "version-mirror.txt", function(){
         console.log("Download version from Mirror.");
         mirrorVersion = fs.readFileSync("./mirror/version-mirror.txt")
-        if (yoyoRemoteVersion = mirrorVersion) {
+        if (yoyoRemoteVersion == mirrorVersion) {
             console.error("Runtime version is up-to-date, exiting......");
             process.exit(1); //If versions are same, exit.
         } else {
