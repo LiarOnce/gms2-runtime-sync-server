@@ -19,7 +19,7 @@ RuntimeFiles.forEach((file) => {
     let readStream = fs.createReadStream(runtimeLocalFiles);
     client.putFile(runtimeRemoteFiles, readStream, {}).then(stream => {
         if (stream == true) {
-            console.log("Upload " + file + "successfully.");
+            console.log("Upload " + file + " successfully.");
         }
     });
 });
@@ -31,7 +31,7 @@ RuntimeURLs.forEach((file) => {
     let readTxtStream = fs.createReadStream(runtimeUrlLocalFiles);
     client.putFile(runtimeUrlRemoteFiles, readTxtStream, {}).then(stream => {
         if (stream == true) {
-            console.log("Upload URL " + file + "successfully.");
+            console.log("Upload URL " + file + " successfully.");
         }
     });
 });

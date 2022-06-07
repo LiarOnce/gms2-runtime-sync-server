@@ -7,3 +7,5 @@ generateJSON-old.js
 !.gitkeep
 download/*
 edition/*
+
+configs/*
