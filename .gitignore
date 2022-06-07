@@ -8,4 +8,4 @@ generateJSON-old.js
 download/*
 edition/*
 
-configs/*
+configs/config.json
