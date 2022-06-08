@@ -5,7 +5,6 @@ const xml2js = require("xml2js");
 const downloadRSS = require("./src/downloadRSS");
 let config = require("./configs/config.json");
 const shell = require("shelljs");
-const path = require("path");
 
 let GetLatestVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.channel.item;
 let latestversion = GetLatestVersion[GetLatestVersion.length - 1];

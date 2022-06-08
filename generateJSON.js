@@ -89,16 +89,20 @@ function checkRemoteVersion() {
 fs.access("./rss/" + RSS.RSSFile, fs.constants.F_OK, function (err) {
     if (err) {
         if (err.code === "ENOENT") {
-            if (config.channel === "Stable") {
-                rssURL = "https://gms.yoyogames.com/Zeus-Runtime.rss";
-                rssPath = "Zeus-Runtime.rss";
-            } else {
-                if (config.channel === "NuBeta") {
+            switch (config.channel) {
+                case "Stable":
+                    rssURL = "https://gms.yoyogames.com/Zeus-Runtime.rss";
+                    rssPath = "Zeus-Runtime.rss";
+                    break;
+
+                case "NuBeta":
                     rssURL = "https://gms.yoyogames.com/Zeus-Runtime-NuBeta.rss";
                     rssPath = "Zeus-Runtime-NuBeta.rss";
-                } else {
+                    break;
+                
+                default:
                     console.log("No file.")
-                }
+                    break;
             }
             downloadRSS.downloadRSS(rssURL, rssPath, function () {
                 console.log("Download successfully. \nIf you want to change channel, you need run 'npm run clean' to delete generated files.")
