@@ -2,16 +2,13 @@
 const upyun = require("upyun");
 const fs = require("fs");
 let config = require("./configs/config.json");
+const { type } = require("os");
 const service = new upyun.Service(config.upyunService, config.upyunOperatorName, config.upyunOperatorPassword);
 const client = new upyun.Client(service);
 let version = fs.readFileSync("./results/runtime/version.txt", 'utf-8');
 
-fs.access("./results/runtime/modules/edition/" + version + "/aria2c.conf", fs.constants.F_OK, (err) => {
-    fs.rmSync("./results/runtime/modules/edition/" + version + "/aria2c.conf");
-});
-
 let RuntimeFiles = fs.readdirSync("./results/runtime/modules/edition/" + version);
-client.makeDir(version);
+client.makeDir("/" + config.channel + "/" + version);
 
 RuntimeFiles.forEach((file) => {
     let runtimeRemoteFiles = "/" + config.channel + "/" + version + "/" + file;
@@ -37,7 +34,7 @@ RuntimeURLs.forEach((file) => {
 });
 
 let MirrorZeusRuntimeRSS = fs.createReadStream("./mirror/Zeus-Runtime.rss");
-client.putFile("/", MirrorZeusRuntimeRSS, {}).then(stream => {
+client.putFile("/Zeus-Runtime.rss", MirrorZeusRuntimeRSS, {}).then(stream => {
     if (stream == true){
         console.log("Upload Zeus-Runtime.rss successfully.");
     }

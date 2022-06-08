@@ -11,7 +11,7 @@ let GetLatestVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.
 let latestversion = GetLatestVersion[GetLatestVersion.length - 1];
 let latestversionString = JSON.stringify(latestversion);
 let runtimeOriginalURL = "http\:\/\/gms.yoyogames.com|https\:\/\/gms.yoyogames.com|http\:\/\/gm2016.yoyogames.com|http\:\/\/gm2016.yoyogames.com";
-let runtimeMirrorURL = config.mirrorURL + "/" + latestversion.enclosure.$['sparkle:version'];
+let runtimeMirrorURL = config.mirrorURL + "/" + config.channel + "/" + latestversion.enclosure.$['sparkle:version'];
 let Reg = new RegExp(runtimeOriginalURL, "g");
 
 let rssURL, rssPath;
