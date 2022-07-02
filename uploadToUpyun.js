@@ -28,7 +28,7 @@ RuntimeFiles.forEach((file) => {
 });
 
 let ReleaseNotesJSON = fs.createReadStream("./results/runtime/modules/edition/" + version + "/release-notes-" + version + "json");
-client.putFile("/Zeus-Runtime.rss", ReleaseNotesJSON, {}).then(stream => {
+client.putFile("/" + config.channel + "/" + version + "/release-notes-" + version + "json" + , ReleaseNotesJSON, {}).then(stream => {
     if (stream == true){
         console.log("Upload Release Notes JSON successfully.");
     }
