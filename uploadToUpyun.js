@@ -3,22 +3,35 @@ const upyun = require("upyun");
 const fs = require("fs");
 let config = require("./configs/config.json");
 const { type } = require("os");
+const path = require("path");
 const service = new upyun.Service(config.upyunService, config.upyunOperatorName, config.upyunOperatorPassword);
 const client = new upyun.Client(service);
 let version = fs.readFileSync("./results/runtime/version.txt", 'utf-8');
 
-let RuntimeFiles = fs.readdirSync("./results/runtime/modules/edition/" + version);
+let RuntimeFiles = fs.readdirSync("./results/runtime/modules/edition/" + version).filter((ext) => {return ext.endsWith(".zip")});
 client.makeDir("/" + config.channel + "/" + version);
 
 RuntimeFiles.forEach((file) => {
     let runtimeRemoteFiles = "/" + config.channel + "/" + version + "/" + file;
     let runtimeLocalFiles = "./results/runtime/modules/edition/" + version + "/" + file;
     let readStream = fs.createReadStream(runtimeLocalFiles);
-    client.putFile(runtimeRemoteFiles, readStream, {}).then(stream => {
-        if (stream == true) {
-            console.log("Upload " + file + " successfully.");
-        }
-    });
+    if(fs.existsSync(runtimeLocalFiles + ".completed")){
+        console.log(file + "Uploaded");
+    } else {
+        client.putFile(runtimeRemoteFiles, readStream, {}).then(stream => {
+            if (stream == true) {
+                fs.writeFileSync(runtimeLocalFiles + ".completed", "");
+                console.log("Upload " + file + " successfully.");
+            }
+        });
+    }
+});
+
+let ReleaseNotesJSON = fs.createReadStream("./results/runtime/modules/edition/" + version + "/release-notes-" + version + "json");
+client.putFile("/Zeus-Runtime.rss", ReleaseNotesJSON, {}).then(stream => {
+    if (stream == true){
+        console.log("Upload Release Notes JSON successfully.");
+    }
 });
 
 let RuntimeURLs = fs.readdirSync("./mirror/edition");
