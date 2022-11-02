@@ -38,7 +38,12 @@ function ExportModule() {
             let GetItemVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.channel.item;
             fs.mkdirSync("./results/runtime");
             //Get comment and enclosure/
-            let modulesJSON = GetItemVersion[GetItemVersion.length - 1];
+            let modulesJSON;
+            if (GetItemVersion.length == undefined){
+                modulesJSON = GetItemVersion;
+            } else {
+                modulesJSON = GetItemVersion[GetItemVersion.length - 1];
+            }
             let comment = modulesJSON.comments;
             fs.writeFile("./results/runtime/comment.txt", comment, (err)=>{
                 console.log("Get comment successfully.");
@@ -98,6 +103,11 @@ fs.access("./rss/" + RSS.RSSFile, fs.constants.F_OK, function (err) {
                 case "NuBeta":
                     rssURL = "https://gms.yoyogames.com/Zeus-Runtime-NuBeta.rss";
                     rssPath = "Zeus-Runtime-NuBeta.rss";
+                    break;
+                    
+                case "LTS":
+                    rssURL = "https://gms.yoyogames.com/Zeus-Runtime-LTS.rss";
+                    rssPath = "Zeus-Runtime-LTS.rss";
                     break;
                 
                 default:

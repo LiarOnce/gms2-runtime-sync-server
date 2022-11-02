@@ -2,6 +2,7 @@
 const upyun = require("upyun");
 const fs = require("fs");
 let config = require("./configs/config.json");
+let channel = require("./configs/RSS.json");
 const { type } = require("os");
 const path = require("path");
 const service = new upyun.Service(config.upyunService, config.upyunOperatorName, config.upyunOperatorPassword);
@@ -27,16 +28,18 @@ RuntimeFiles.forEach((file) => {
     }
 });
 
-let ReleaseNotesJSON = fs.createReadStream("./results/runtime/modules/edition/" + version + "/release-notes-" + version + "json");
-client.putFile("/" + config.channel + "/" + version + "/release-notes-" + version + "json" + , ReleaseNotesJSON, {}).then(stream => {
-    if (stream == true){
-        console.log("Upload Release Notes JSON successfully.");
-    }
+let ReleaseNotes = fs.readdirSync("./results/runtime/modules/edition/" + version).filter((ext) => {return ext.endsWith(".json")});
+ReleaseNotes.forEach((file) => {
+    client.putFile("/" + config.channel + "/" + version + "/" + file, ReleaseNotes, {}).then(stream => {
+        if (stream == true){
+            console.log("Upload Release Notes successfully.");
+        }
+    });
 });
 
 let RuntimeURLs = fs.readdirSync("./mirror/edition");
 RuntimeURLs.forEach((file) => {
-    let runtimeUrlRemoteFiles = "/docs/version/" + file;
+    let runtimeUrlRemoteFiles = "/docs/version/" + config.channel + "/" + file;
     let runtimeUrlLocalFiles = "./mirror/edition/" + file;
     let readTxtStream = fs.createReadStream(runtimeUrlLocalFiles);
     client.putFile(runtimeUrlRemoteFiles, readTxtStream, {}).then(stream => {
@@ -46,8 +49,8 @@ RuntimeURLs.forEach((file) => {
     });
 });
 
-let MirrorZeusRuntimeRSS = fs.createReadStream("./mirror/Zeus-Runtime.rss");
-client.putFile("/Zeus-Runtime.rss", MirrorZeusRuntimeRSS, {}).then(stream => {
+let MirrorZeusRuntimeRSS = fs.createReadStream("./mirror/" + channel.RSSFile);
+client.putFile("/" + channel.RSSFile, MirrorZeusRuntimeRSS, {}).then(stream => {
     if (stream == true){
         console.log("Upload Zeus-Runtime.rss successfully.");
     }

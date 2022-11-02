@@ -7,7 +7,12 @@ let config = require("./configs/config.json");
 const shell = require("shelljs");
 
 let GetLatestVersion = JSON.parse(fs.readFileSync("./results/result.json")).rss.channel.item;
-let latestversion = GetLatestVersion[GetLatestVersion.length - 1];
+let latestversion;
+if (GetLatestVersion.length == undefined){
+    latestversion = GetLatestVersion;
+} else {
+    latestversion = GetLatestVersion[GetLatestVersion.length - 1];
+}
 let latestversionString = JSON.stringify(latestversion);
 let runtimeOriginalURL = "http\:\/\/gms.yoyogames.com|https\:\/\/gms.yoyogames.com|http\:\/\/gm2016.yoyogames.com|http\:\/\/gm2016.yoyogames.com";
 let runtimeMirrorURL = config.mirrorURL + "/" + config.channel + "/" + latestversion.enclosure.$['sparkle:version'];
@@ -25,16 +30,25 @@ const parser = new xml2js.Parser({
 });
 
 function download(){
-    if (config.channel == "Stable") {
-        rssURL = config.mirrorURL + "/" + "Zeus-Runtime.rss";
-        rssPath = "Zeus-Runtime.rss";
-    } else {
-        if (config.channel == "NuBeta") {
+    switch (config.channel) {
+        case "Stable":
+            rssURL = config.mirrorURL + "/" + "Zeus-Runtime.rss";
+            rssPath = "Zeus-Runtime.rss";
+            break;
+
+        case "NuBeta":
             rssURL = config.mirrorURL + "/" + "Zeus-Runtime-NuBeta.rss";
             rssPath = "Zeus-Runtime-NuBeta.rss";
-        } else {
+            break;
+            
+        case "LTS":
+            rssURL = config.mirrorURL + "/" + "Zeus-Runtime-LTS.rss";
+            rssPath = "Zeus-Runtime-LTS.rss";
+            break;
+        
+        default:
             console.log("No file.")
-        }
+            break;
     }
     downloadRSS.downloadRSSFromMirror(rssURL, rssPath, function(){
         console.log("Download successfully from Mirror.");
@@ -76,8 +90,8 @@ function generateXML () {
             shell.cd("mirror");
             shell.exec("sed -i '2d' latest.xml");
             shell.exec("sed -i '$d' latest.xml");
-            fs.unlinkSync("Zeus-Runtime.rss");
-            fs.renameSync("latest.xml", "Zeus-Runtime.rss");
+            fs.unlinkSync(rssPath);
+            fs.renameSync("latest.xml", rssPath);
             CopyAndGenerateTXT();
         });
     });
